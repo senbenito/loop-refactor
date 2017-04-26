@@ -12,13 +12,19 @@ Run the command 'mocha' to test. Tests check for expected output and absence of 
 
 module.exports = {
 
-  sum: (arr, base) => {
-    let sum = base;
-    for (var i = 0; i < arr.length; i++){
-      sum += arr[i];
-    }
-    return sum;
-  },
+  // sum: (arr, base) => {
+  //   let sum = base;
+  //   for (var i = 0; i < arr.length; i++){
+  //     sum += arr[i];
+  //   }
+  //   return sum;
+  // },
+
+ function sum: (arr, base){
+  return arr.reduce(function(acc, val) {
+  return acc + val;
+}, base);
+},
 
   someObjsContainProp: (arr, prop) => {
     for(var i = 0; i < arr.length; i++){

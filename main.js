@@ -39,7 +39,7 @@ module.exports = {
 
   someObjsContainProp: (arr, prop) => {
     return arr.some(function (element, index, array){
-      if(index.hasOwnProperty(prop)){
+      if(element.hasOwnProperty(prop)){
         return true;
       }
       return false;
@@ -47,35 +47,61 @@ module.exports = {
   },
 
 //use map
+  // convertNameArrayToObject: (arr) => {
+  //   let nameObj = [];
+  //   for(var i = 0; i < arr.length; i++){
+  //     let obj = {};
+  //     obj.first = arr[i][0];
+  //     obj.last = arr[i][1];
+  //     nameObj.push(obj);
+  //   }
+  //   return nameObj;
+  // },
+
   convertNameArrayToObject: (arr) => {
-    let nameObj = [];
-    for(var i = 0; i < arr.length; i++){
+    var nameObj = arr.map(function (x){
       let obj = {};
-      obj.first = arr[i][0];
-      obj.last = arr[i][1];
-      nameObj.push(obj);
-    }
+      obj.first = x[0];
+      obj.last = x[1];
+      return obj;
+    });
     return nameObj;
   },
 
 //use every
+  // objContainsProp: (arr, prop) => {
+  //   for (var i = 0; i < arr.length; i++){
+  //     if(!arr[i].hasOwnProperty(prop)){
+  //       return false;
+  //     }
+  //   }
+  //   return true;
+  // },
+
   objContainsProp: (arr, prop) => {
-    for (var i = 0; i < arr.length; i++){
-      if(!arr[i].hasOwnProperty(prop)){
-        return false;
-      }
-    }
-    return true;
+    return arr.every(function (element, index, array){
+      return element.hasOwnProperty(prop);
+    });
   },
 
 //use filter
+  // stringMatch: (arr, str) => {
+  //   let matches = [];
+  //   for(var i = 0; i < arr.length; i++){
+  //     if (arr[i].includes(str)){
+  //       matches.push(arr[i]);
+  //     }
+  //   }
+  //   return matches;
+  // },
+
   stringMatch: (arr, str) => {
-    let matches = [];
-    for(var i = 0; i < arr.length; i++){
-      if (arr[i].includes(str)){
-        matches.push(arr[i]);
+    var matches = arr.filter(function (word){
+      if (word.includes(str)){
+        return word;
       }
-    }
+    });
     return matches;
   },
+
 };

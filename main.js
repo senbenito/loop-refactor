@@ -12,6 +12,7 @@ Run the command 'mocha' to test. Tests check for expected output and absence of 
 
 module.exports = {
 
+//use reduce
   // sum: (arr, base) => {
   //   let sum = base;
   //   for (var i = 0; i < arr.length; i++){
@@ -20,21 +21,32 @@ module.exports = {
   //   return sum;
   // },
 
- function sum: (arr, base){
-  return arr.reduce(function(acc, val) {
-  return acc + val;
-}, base);
-},
-
-  someObjsContainProp: (arr, prop) => {
-    for(var i = 0; i < arr.length; i++){
-      if(arr[i].hasOwnProperty(prop)){
-        return true;
-      }
-    }
-    return false;
+  sum: (arr, base) => {
+    return arr.reduce(function (result, element){
+      return element + result;
+    }, base);
   },
 
+//use some
+  // someObjsContainProp: (arr, prop) => {
+  //   for(var i = 0; i < arr.length; i++){
+  //     if(arr[i].hasOwnProperty(prop)){
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // },
+
+  someObjsContainProp: (arr, prop) => {
+    return arr.some(function (element, index, array){
+      if(index.hasOwnProperty(prop)){
+        return true;
+      }
+      return false;
+    });
+  },
+
+//use map
   convertNameArrayToObject: (arr) => {
     let nameObj = [];
     for(var i = 0; i < arr.length; i++){
@@ -46,6 +58,7 @@ module.exports = {
     return nameObj;
   },
 
+//use every
   objContainsProp: (arr, prop) => {
     for (var i = 0; i < arr.length; i++){
       if(!arr[i].hasOwnProperty(prop)){
@@ -55,6 +68,7 @@ module.exports = {
     return true;
   },
 
+//use filter
   stringMatch: (arr, str) => {
     let matches = [];
     for(var i = 0; i < arr.length; i++){
